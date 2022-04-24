@@ -18,6 +18,13 @@ export class Relatorio extends Component {
             filmesNunca: [],
             columnsCliente: [
                 {
+                    title: 'rank',
+                    key: 'id',
+                    render: (p1,p2,p3) => {
+                        return p3+1
+                    }
+                },
+                {
                     title: 'Id',
                     dataIndex: 'id',
                     key: 'id'
@@ -39,6 +46,13 @@ export class Relatorio extends Component {
                 }
             ],
             columnsFilme: [
+                {
+                    title: 'rank',
+                    key: 'id',
+                    render: (p1,p2,p3) => {
+                        return p3+1
+                    }
+                },
                 {
                     title: 'Id',
                     dataIndex: 'id',

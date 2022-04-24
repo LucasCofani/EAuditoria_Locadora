@@ -94,9 +94,10 @@ export class Cliente extends Component {
             default:
                 console.log("function not found");
         }
+        this.setState({ cliente: { id: 0, nome: '', cpf: '', dataNascimento: '' } });
     }
     handleCancel() {
-        this.setState({ isModalVisible: false });
+        this.setState({ isModalVisible: false ,cliente: { id: 0, nome: '', cpf: '', dataNascimento: '' } });
     }
 
     changeName = (e) => {

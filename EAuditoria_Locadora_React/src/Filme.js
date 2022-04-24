@@ -99,9 +99,10 @@ export class Filme extends Component {
             default:
                 console.log("function not found");
         }
+        this.setState({ filme: { id: 0, titulo: '', classificacaoIndicativa: '', lancamento: '' }});
     }
     handleCancel() {
-        this.setState({ isModalVisible: false });
+        this.setState({ isModalVisible: false ,filme: { id: 0, titulo: '', classificacaoIndicativa: '', lancamento: '' }});
     }
 
     changeTitulo = (e) => {
@@ -206,7 +207,7 @@ export class Filme extends Component {
                 <Modal title={modalTitle} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                     <Space direction="vertical">
                         <Input disabled={!editable} addonBefore="Titulo" placeholder="Ex: Wall-E" value={filme.titulo} onChange={this.changeTitulo} />
-                        <Input disabled={!editable} addonBefore="Classificacao indicativa" placeholder="Ex: 12345678912" value={filme.classificacaoIndicativa} onChange={this.changeClassi} />
+                        <Input disabled={!editable} addonBefore="Classificacao indicativa" placeholder="Ex: 12" value={filme.classificacaoIndicativa} onChange={this.changeClassi} />
                         <Input disabled={!editable} addonBefore="Lançamento" placeholder="Ex: 0" value={filme.lancamento} onChange={this.changeLancamento} />
                     </Space>
                 </Modal>

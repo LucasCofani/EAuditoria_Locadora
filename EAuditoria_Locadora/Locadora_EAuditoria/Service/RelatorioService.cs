@@ -54,7 +54,13 @@ namespace Locadora_EAuditoria.Service
                     .Take(5)
                     .Select(p => p.id_Filme);
 
-                var menosAlugados = filmes.Info.Where(p => topAlugadosId.Contains(p.id)).ToList();
+                //retira da ordem...
+                //var menosAlugados = filmes.Info.Where(p => topAlugadosId.Contains(p.id)).ToList();
+                var menosAlugados = new List<Filme>();
+                foreach (var id in topAlugadosId)
+                {
+                    menosAlugados.Add(filmes.Info.FirstOrDefault(p => p.id == id));
+                }
 
                 return ResponseWrapper<List<Filme>>.Ok(menosAlugados);
             }
@@ -101,8 +107,13 @@ namespace Locadora_EAuditoria.Service
                     }).OrderByDescending(p => p.count)
                     .Take(5)
                     .Select(p => p.id_Filme);
-
-                var maisAlugados = filmes.Info.Where(p => topAlugadosId.Contains(p.id)).ToList();
+                //retira da ordem...
+                //var maisAlugados = filmes.Info.Where(p => topAlugadosId.Contains(p.id)).ToList();
+                var maisAlugados = new List<Filme>();
+                foreach (var id in topAlugadosId)
+                {
+                    maisAlugados.Add(filmes.Info.FirstOrDefault(p => p.id == id));
+                }
 
                 return ResponseWrapper<List<Filme>>.Ok(maisAlugados);
             }
@@ -128,8 +139,13 @@ namespace Locadora_EAuditoria.Service
                     }).OrderByDescending(p => p.count)
                     .Take(5)
                     .Select(p => p.id_Cliente);
-
-                var topClientes = clientes.Info.Where(p => topClientesId.Contains(p.id)).ToList();
+                //retira da ordem...
+                //var topClientes = clientes.Info.Where(p => topClientesId.Contains(p.id)).ToList();
+                var topClientes = new List<Cliente>();
+                foreach (var id in topClientesId)
+                {
+                    topClientes.Add(clientes.Info.FirstOrDefault( p=> p.id == id)); ;
+                }
 
                 return ResponseWrapper<List<Cliente>>.Ok(topClientes);
             }

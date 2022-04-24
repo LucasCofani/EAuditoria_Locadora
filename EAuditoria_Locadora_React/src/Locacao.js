@@ -111,9 +111,10 @@ export class Locacao extends Component {
             default:
                 console.log("function not found");
         }
+        this.setState({ locacao: { id: 0, id_Cliente: '', id_Filme: '', dataLocacao: '', dataDevolucao: '', titulo: '', nome: '' }});
     }
     handleCancel() {
-        this.setState({ isModalVisible: false });
+        this.setState({ isModalVisible: false , locacao: { id: 0, id_Cliente: '', id_Filme: '', dataLocacao: '', dataDevolucao: '', titulo: '', nome: '' }});
     }
 
     changeCliente = (e) => {
@@ -172,6 +173,10 @@ export class Locacao extends Component {
     }
 
     postInfo() {
+        let temp= this.state.locacao;
+        if (temp.dataDevolucao == ""){
+            temp.dataDevolucao = null;
+        }
         fetch(variables.API_URL + apiURI, {
             method: 'POST',
             headers: {
@@ -179,7 +184,7 @@ export class Locacao extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
-                this.state.locacao
+                temp
             )
         })
             .then(res => res.json())
